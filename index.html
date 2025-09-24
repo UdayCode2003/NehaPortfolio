@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neha Shetty | Resume Portfolio</title>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ---------- GLOBAL ---------- */
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
+    body {background:#f5f7fa; color:#333; line-height:1.6; scroll-behavior:smooth;}
+    h1,h2,h3 {margin-bottom:15px; color:#222;}
+    h2 {border-bottom:2px solid #0077cc; display:inline-block; padding-bottom:5px;}
+    p, li {margin-bottom:10px;}
+    a {color:#0077cc; text-decoration:none;}
+    a:hover {text-decoration:underline;}
+    section {padding:60px 20px; max-width:1100px; margin:auto;}
+    .btn {display:inline-block; padding:10px 20px; background:#0077cc; color:#fff; border-radius:5px; transition:0.3s;}
+    .btn:hover {background:#005fa3;}
+
+    /* ---------- HEADER ---------- */
+    header {background:#0077cc; color:#fff; text-align:center; padding:80px 20px; position:relative;}
+    header h1 {font-size:2.8rem;}
+    header p.typing {font-size:1.2rem; height:25px; overflow:hidden; border-right:2px solid #fff; display:inline-block;}
+
+    /* ---------- NAVIGATION (Hamburger) ---------- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 16px;
+      background: #fff;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #0077cc;
+      letter-spacing: 0.5px;
+      padding: 10px 0;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+    }
+    .nav-links li {margin: 0;}
+    .nav-links a {
+      color:#333;
+      font-weight:600;
+      padding:8px 10px;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      background: #e6f0ff;
+      color: #0077cc;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 10px;
+      margin-left: 10px;
+      z-index: 11;
+    }
+    .menu-toggle .bar {
+      width: 26px;
+      height: 3px;
+      background: #0077cc;
+      margin: 4px 0;
+      border-radius:2px;
+      transition: all 0.3s;
+    }
+    /* Hamburger icon animate to X */
+    .menu-toggle.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px,5px);
+    }
+    .menu-toggle.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px,-6px);
+    }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline {position:relative; margin:20px 0; padding-left:40px;}
+    .timeline::before {content:""; position:absolute; left:15px; top:0; bottom:0; width:4px; background:#0077cc;}
+    .timeline-item {
+      margin-bottom:25px;
+      position:relative;
+      list-style:none;
+      padding-left:55px; /* Enough space for the icon */
+    }
+    .timeline-item h3 {margin-bottom:5px; color:#0077cc;}
+    .timeline-item span {font-size:0.9rem; color:#666;}
+    .timeline-item::before {content:""; display:none;} /* fix unwanted bullets */
+    .icon {
+      position:absolute;
+      left:0;
+      top:0;
+      background:#0077cc;
+      color:#fff;
+      padding:8px;
+      border-radius:50%;
+      font-size:0.8rem;
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skill {margin:15px 0;}
+    .skill-name {font-weight:600; margin-bottom:5px;}
+    .progress {background:#ddd; border-radius:20px; overflow:hidden;}
+    .progress-bar {height:10px; background:#0077cc; width:0; transition:width 1.5s ease;}
+
+    /* ---------- CERTIFICATIONS ---------- */
+    .badges {display:flex; flex-wrap:wrap; gap:10px;}
+    .badge {background:#e6f0ff; padding:10px 15px; border-radius:20px; font-size:0.9rem; color:#0077cc; transition:0.3s;}
+    .badge:hover {background:#0077cc; color:#fff;}
+
+    /* ---------- CONTACT ---------- */
+    form {max-width:600px; margin:auto; display:flex; flex-direction:column;}
+    input, textarea {margin:8px 0; padding:10px; border:1px solid #ccc; border-radius:5px; font-size:1rem;}
+    textarea {resize:none;}
+    footer {background:#222; color:#fff; text-align:center; padding:20px;}
+
+    /* ---------- ANIMATION ON SCROLL ---------- */
+    .hidden {opacity:0; transform:translateY(30px); transition:all 1s;}
+    .show {opacity:1; transform:translateY(0);}
+
+    /* ---------- RESPONSIVE DESIGN ---------- */
+    @media (max-width: 700px) {
+      section {
+        padding: 30px 8px;
+        max-width: 100%;
+      }
+      .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 8px;
+      }
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        background: #fff;
+        position: fixed;
+        top: 58px;
+        left: -100%;
+        width: 75%;
+        max-width: 340px;
+        height: 100vh;
+        padding: 24px 20px;
+        box-shadow: 2px 0 15px rgba(0,0,0,0.08);
+        gap: 16px;
+        transition: left 0.3s;
+        z-index: 10;
+      }
+      .nav-links.open {
+        left: 0;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      .logo {
+        padding: 10px 0;
+      }
+      .timeline {
+        padding-left: 0;
+      }
+      .timeline-item {
+        padding-left: 45px;
+        font-size: 1rem;
+      }
+      .icon {
+        left: -2px;
+        top: 0;
+        padding: 7px;
+        font-size: 0.9rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+        padding-bottom: 3px;
+      }
+      .badges {
+        flex-direction: column;
+        gap: 8px;
+      }
+      form {
+        padding: 0 4px;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    /* Overlay effect for mobile */
+    @media (max-width: 700px) {
+      body.menu-open::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.22);
+        z-index: 9;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>Neha Shetty</h1>
+    <p class="typing"></p>
+    <p><a href="mailto:nehasshetty09@gmail.com" class="btn">Get in Touch</a></p>
+  </header>
+
+  <!-- NAVIGATION (Hamburger Dropdown) -->
+  <nav>
+    <div class="navbar">
+      <div class="logo">Neha Shetty</div>
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ABOUT -->
+  <section id="about" class="hidden">
+    <h2>About Me</h2>
+    <p>
+      I am a results-driven finance and accounts professional with 7+ years of experience
+      in accounting, compliance, loan processing, credit analysis, and financial reporting.
+      Adept in statutory compliance, budgeting, forecasting, and risk assessment.
+      Recognized for strong communication, problem-solving, and analytical skills.
+    </p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="hidden">
+    <h2>Professional Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Accounts Officer</h3>
+        <span>Solidarity Foundation | Jun 2024 – Present</span>
+        <p>Maintained books, prepared MIS, ensured compliance, payroll, donor reports, and audits.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Associate Executive</h3>
+        <span>Me-Hin Tech-Edge Solutions (IDFC First Bank) | Jan 2023 – Mar 2024</span>
+        <p>Loan documentation, credit analysis, sales strategies, compliance, and client relationships.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Counter Sales Executive</h3>
+        <span>Muthoot Capital Services Ltd | Sep 2017 – Dec 2022</span>
+        <p>Handled loan processing, KYC verification, EMI collections, and NPA recovery strategies.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="hidden">
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+        <h3>B.Com (Finance & Accounting)</h3>
+        <span>Vijaya College, Mulki – Mangalore University (2017)</span>
+        <p>Graduated with 89.84%.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+        <h3>PUC (Commerce)</h3>
+        <span>Poorna Prajna PU College, Admar (2014)</span>
+        <p>Achieved 91%.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+        <h3>SSLC</h3>
+        <span>Poorna Prajna PU College, Admar (2012)</span>
+        <p>Secured 88.8%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="hidden">
+    <h2>Core Skills</h2>
+    <div class="skill">
+      <div class="skill-name">Financial Analysis & Credit Assessment</div>
+      <div class="progress"><div class="progress-bar" data-width="90%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-name">Compliance & Documentation</div>
+      <div class="progress"><div class="progress-bar" data-width="85%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-name">Risk Mitigation & Fraud Prevention</div>
+      <div class="progress"><div class="progress-bar" data-width="80%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-name">Customer Relationship Management</div>
+      <div class="progress"><div class="progress-bar" data-width="75%"></div></div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="hidden">
+    <h2>Certifications & Achievements</h2>
+    <div class="badges">
+      <div class="badge"><i class="fas fa-trophy"></i> High Performance Achiever Award (Muthoot, Twice)</div>
+      <div class="badge"><i class="fas fa-certificate"></i> Diploma in Computer Applications</div>
+      <div class="badge"><i class="fas fa-users"></i> State-Level NSS Camp Participant (2014)</div>
+      <div class="badge"><i class="fas fa-laptop"></i> Proficient in MS Office & CRM Tools</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="hidden">
+    <h2>Contact Me</h2>
+    <form action="mailto:nehasshetty09@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Neha Shetty | All Rights Reserved</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Typing Effect
+    const typingText = "Finance & Accounts Professional | Credit & Risk Analyst";
+    let i = 0;
+    function typeWriter() {
+      if (i < typingText.length) {
+        document.querySelector(".typing").innerHTML += typingText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 80);
+      }
+    }
+    window.onload = typeWriter;
+
+    // Animate Skills on Scroll
+    const progressBars = document.querySelectorAll(".progress-bar");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.getAttribute("data-width");
+        }
+      });
+    }, {threshold:0.5});
+    progressBars.forEach(bar => observer.observe(bar));
+
+    // Reveal Sections on Scroll
+    const hiddenElements = document.querySelectorAll(".hidden");
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, {threshold:0.2});
+    hiddenElements.forEach(el => revealObserver.observe(el));
+
+    // Hamburger Menu for Mobile
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("open");
+      navLinks.classList.toggle("open");
+      document.body.classList.toggle("menu-open");
+    });
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("open");
+        navLinks.classList.remove("open");
+        document.body.classList.remove("menu-open");
+      });
+    });
+  </script>
+</body>
+</html>
